@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import { useForm, useFieldArray } from "react-hook-form";
 import { toBech32Address } from "@zilliqa-js/crypto"
+import {validation} from "@zilliqa-js/util"
 import { useState } from 'react';
 
 
@@ -12,17 +12,18 @@ function App() {
   });
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "test"
+    name: "Address"
   });
 
   const handledata = (data) => {
-    data.test.map((data) => {
-
-      settoBench32( arr => [... arr, (toBech32Address(data.bench16))])
+    settoBench32([])
+    data.Address.map((data) => {
+      if(validation.isAddress(data.bench16Address))
+      {
+        return settoBench32( arr => [...arr, (toBech32Address(data.bench16Address))])
+      }
+      return settoBench32( arr => [...arr, "Invalid Address"])
     })
-
-
-
   }
 
   return (
@@ -31,7 +32,7 @@ function App() {
         <ul>
           {fields.map((item, index) => (
             <li key={item.id}>
-              <input {...register(`test.${index}.bench16`)} />
+              <input {...register(`Address.${index}.bench16Address`)} />
               <button type="button" onClick={() => remove(index)}>Delete</button>
             </li>
           ))}
