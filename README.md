@@ -4,4 +4,4 @@ With this tool, you can add multiple base16 address and it will convert to bech3
 
 Known issues:
 
-If you enter an invalid address and click submit, the whole app will crash. Have to refresh the page and try again
+If you enter an invalid address and click submit, the whole app will crash. Have to refresh the page and try again(Fixed on 14/11/2022)
