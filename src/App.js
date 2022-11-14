@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 
 function App() {
-  const [toBench32, settoBench32] = useState([])
+  const [toBech32, settoBech32] = useState([])
   const { register, control, handleSubmit } = useForm({
 
   });
@@ -16,13 +16,13 @@ function App() {
   });
 
   const handledata = (data) => {
-    settoBench32([])
+    settoBech32([])
     data.Address.map((data) => {
-      if(validation.isAddress(data.bench16Address))
+      if(validation.isAddress(data.bech16Address))
       {
-        return settoBench32( arr => [...arr, (toBech32Address(data.bench16Address))])
+        return settoBech32( arr => [...arr, (toBech32Address(data.bech16Address))])
       }
-      return settoBench32( arr => [...arr, "Invalid Address"])
+      return settoBech32( arr => [...arr, "Invalid Address"])
     })
   }
 
@@ -32,7 +32,7 @@ function App() {
         <ul>
           {fields.map((item, index) => (
             <li key={item.id}>
-              <input {...register(`Address.${index}.bench16Address`)} />
+              <input {...register(`Address.${index}.bech16Address`)} />
               <button type="button" onClick={() => remove(index)}>Delete</button>
             </li>
           ))}
@@ -45,7 +45,7 @@ function App() {
         </button>
         <input type="submit" />
       </form>
-     {toBench32.map((data)=>
+     {toBech32.map((data)=>
       {
         return(<p>{data}</p>)
       })}
